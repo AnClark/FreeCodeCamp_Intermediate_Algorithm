@@ -4,8 +4,22 @@
  */
 
 function steamroller(arr) {
-    // I'm a steamroller, baby
-    return arr;
+
+    let steamrolled_array = [];
+
+    function steamroller_call(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] instanceof Array)
+                steamroller_call(arr[i]);
+            else
+                steamrolled_array.push(arr[i]);
+        }
+    }
+
+    steamroller_call(arr);
+
+    return steamrolled_array;
 }
 
-steamroller([1, [2], [3, [[4]]]]);
+console.log(steamroller([1, [2], [3, [[4]]]]));
+console.log(steamroller([[["a"]], [["b"]]]));
